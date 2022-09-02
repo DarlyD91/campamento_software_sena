@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Bootcamp;
 
 class BootcampController extends Controller
 {
@@ -13,7 +14,8 @@ class BootcampController extends Controller
      */
     public function index()
     {
-        return "Aqui se mostrarán todos los bootcamps";
+        return Bootcamp::all();
+        //return "Aqui se mostrarán todos los bootcamps";
     }
 
     /**
@@ -24,7 +26,12 @@ class BootcampController extends Controller
      */
     public function store(Request $request)
     {
-        return "Aqui se va a registrara un nuevo bootcamp (entidad)";
+        //Captura el payload
+        //Creae el nuevo bootcamp
+        return Bootcamp::create(
+            $request->all()
+        );
+        //return "Aqui se va a registrara un nuevo bootcamp (entidad)";
     }
 
     /**
@@ -35,7 +42,8 @@ class BootcampController extends Controller
      */
     public function show($id)
     {
-        return "Mostrar un bootcamp especifico por id";
+        return Bootcamp::find($id);
+        //return "Mostrar un bootcamp especifico por id";
     }
 
     /**
@@ -47,7 +55,14 @@ class BootcampController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "Actualizar un bootcamp especifico cuyo id sea $id";
+        //1. Encontrar el bootcamp por id
+        $b = Bootcamp::find($id);
+        //2. Actualizarlo
+        $b->update($request->all());
+        //3. Enviar response con el bootcamp actualizar
+        //Actualizado
+        return $b;
+        //return "Actualizar un bootcamp especifico cuyo id sea $id";
     }
 
     /**
@@ -58,6 +73,13 @@ class BootcampController extends Controller
      */
     public function destroy($id)
     {
-        return "Eliminar un bootcamp especifico cuyo id sea $id";
+        //1. Encontrar el bootcamp por id
+        $b = Bootcamp::find($id);
+
+        //2. Eliminarlo
+        $b->delete();
+        //3. Response con el objeto eliminado
+        return $b;
+        //return "Eliminar un bootcamp especifico cuyo id sea $id";
     }
 }
