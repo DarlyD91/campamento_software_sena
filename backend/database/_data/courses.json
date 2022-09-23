@@ -1,0 +1,10 @@
+[
+    {
+        "title" : "Math",
+        "description" : "Algebra",
+        "weeks" : "Primary",
+        "enroll_cost" : "2300",
+        "minimum_skill" : "12" ,
+        "bootcamp_id" : "6"
+    }
+]
